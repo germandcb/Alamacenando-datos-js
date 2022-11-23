@@ -1,5 +1,6 @@
 import checkComplete from './checkComplete.js';
 import deleteIcon from './deleteIcon.js';
+import { displayTasks } from './readTasks.js';
 
 export const addTask = (evento) => { // Función que agrega tareas 
     evento.preventDefault();
@@ -22,6 +23,8 @@ export const addTask = (evento) => { // Función que agrega tareas
         value,
         dateFormat
       }
+    
+    list.innerHTML = '';
 
     // Convertimos el string, para poder manejarala con js
     const taskList = JSON.parse(localStorage.getItem('tasks')) || [];
@@ -31,8 +34,7 @@ export const addTask = (evento) => { // Función que agrega tareas
     // Convertimos la tarea en un string
     localStorage.setItem("tasks", JSON.stringify(taskList)); // Alamacenamos los datos en el alamacenamiento local del navegador 
 
-    const task = createTask(taskObj);
-    list.appendChild(task);
+      displayTasks();
   }
   
   export const createTask = ({value, dateFormat}) => {
