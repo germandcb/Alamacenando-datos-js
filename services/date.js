@@ -8,3 +8,11 @@ export const uniquDates = (tasks) => {
     });
     return unique;
 };
+
+export const orderDates = (dates) => {
+    return dates.sort( (a,b) => {
+        const firstDate = moment(a, "DD/MM/YYYY");
+        const secondDate = moment(b, "DD/MM/YYYY");
+        return firstDate - secondDate;
+    }); // Ordena los elementos en un arreglo
+}

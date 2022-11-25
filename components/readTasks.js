@@ -1,12 +1,13 @@
 import { createTask } from "./addTask.js";
+import { uniquDates, orderDates } from "../services/date.js";
 import dateElement from "./dateElement.js";
-import { uniquDates } from "../services/date.js";
 
 export const displayTasks = () => {
     const list = document.querySelector("[data-list]")
     // JSON.parse - convertimos los valores a objetos js 
     const taskList = JSON.parse(localStorage.getItem("tasks")) || [];
     const dates = uniquDates(taskList);
+    orderDates(dates);
 
     dates.forEach( (date) => {
         const dateMoment = moment(date, "DD/MM/YYYY");
@@ -18,6 +19,6 @@ export const displayTasks = () => {
                 list.appendChild(createTask(task));
             }
         });
-    })
+    });
 
-}
+};
